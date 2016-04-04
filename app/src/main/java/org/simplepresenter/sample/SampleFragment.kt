@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import org.simplepresenter.PresenterFragment
-import org.simplepresenter.R
 import org.simplepresenter.ViewCommand
 import org.simplepresenter.commands.ProgressViewCommand
 import org.simplepresenter.commands.SimpleDataViewCommand
+import org.simplepresenter.sample.R.layout
 
 class SampleFragment : PresenterFragment<SamplePresenter>() {
 
@@ -27,7 +27,7 @@ class SampleFragment : PresenterFragment<SamplePresenter>() {
     var button: Button? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.sample_fragment, container, false)
+        val view = inflater?.inflate(layout.sample_fragment, container, false)
         textView = view?.findViewById(R.id.text) as TextView
         button = view?.findViewById(R.id.button) as Button
         button?.setOnClickListener({ presenter.onItemClick() })

@@ -1,17 +1,13 @@
 package org.simplepresenter
 
 import android.os.Bundle
+import android.os.Handler
 
 @Suppress("UNCHECKED_CAST")
-class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) {
+class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) : ViewDelegate<P>(view) {
 
     private var saveStateCalled = false
-
-    internal var view: PresenterView<P>? = null
-    internal var presenter: P? = null
-    internal var isResumed = false
-    internal var isDead = false
-    internal var isRestoring = false
+    private val uiHandler = Handler()
 
     init {
         this.view = view
@@ -37,6 +33,12 @@ class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) {
             isRestoring = true
         }
         presenter?.bind(this)
+    }
+
+    override fun delegateCommand(command: ViewCommand) {
+        uiHandler.post {
+            view?.dispatchCommand(command)
+        }
     }
 
     fun onPause() {

@@ -1,18 +1,19 @@
 package org.simplepresenter
 
-import android.os.Handler
+import org.simplepresenter.commands.DistinctViewCommand
+import org.simplepresenter.commands.OneTimeViewCommand
 import java.lang.ref.WeakReference
 import java.util.*
 
 abstract class Presenter {
 
-    private val uiHandler = Handler()
-    private var delegateReference: WeakReference<PresenterViewDelegate<*>>? = null
-    private val delegate: PresenterViewDelegate<*>?
+    private final val lock = Object()
+    private var delegateReference: WeakReference<ViewDelegate<*>>? = null
+    private val delegate: ViewDelegate<*>?
         get() = delegateReference?.get()
 
-    private val commands = LinkedList<ViewCommand>()
-    private var lastCommand: ViewCommand? = null
+    internal var commands = LinkedList<ViewCommand>()
+    internal var lastCommand: ViewCommand? = null
 
     open fun onViewCreated() {
     }
@@ -21,18 +22,25 @@ abstract class Presenter {
     }
 
     final fun applyViewState(command: ViewCommand) {
-        uiHandler.post {
-            if (delegate?.isResumed ?: false) {
-                delegate?.view?.dispatchCommand(command)
-            }
-            commands.add(command)
+        synchronized(lock) {
+            commands = LinkedList(onNewCommand(command, commands))
             lastCommand = command
+            if (delegate?.isResumed ?: false) {
+                dispatchCommand(command)
+            }
         }
+    }
+
+    fun onNewCommand(newCommand: ViewCommand, list: LinkedList<ViewCommand>): List<ViewCommand> {
+        if (newCommand is DistinctViewCommand) {
+            return list.filter { !it.javaClass.isAssignableFrom(newCommand.javaClass) } + newCommand
+        }
+        return list + newCommand
     }
 
     // Internal methods goes here -->
 
-    final internal fun bind(view: PresenterViewDelegate<*>) {
+    final internal fun bind(view: ViewDelegate<*>) {
         delegateReference?.clear()
         delegateReference = WeakReference(view)
     }
@@ -43,6 +51,23 @@ abstract class Presenter {
     }
 
     internal fun onRestoreView() {
-        commands.forEach { delegate?.view?.dispatchCommand(it) }
+        commands.forEach { dispatchCommand(it) }
+    }
+
+    protected fun afterCommandExecuted(command: ViewCommand) {
+        applyCommandStack { it.filter { it !is OneTimeViewCommand } }
+    }
+
+    protected fun beforeCommandExecuted(command: ViewCommand) {
+    }
+
+    internal fun dispatchCommand(command: ViewCommand) {
+        beforeCommandExecuted(command)
+        delegate?.delegateCommand(command)
+        afterCommandExecuted(command)
+    }
+
+    protected fun applyCommandStack(f: (List<ViewCommand>) -> List<ViewCommand>) {
+        commands = LinkedList(f(commands))
     }
 }

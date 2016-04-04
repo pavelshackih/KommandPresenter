@@ -1,4 +1,3 @@
 package org.simplepresenter
 
-interface ViewCommand {
-}
+interface ViewCommand
