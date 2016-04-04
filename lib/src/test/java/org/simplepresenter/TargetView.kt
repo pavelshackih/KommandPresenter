@@ -5,7 +5,7 @@ class TargetView : PresenterView<TargetPresenter> {
     private var _presenter = TargetPresenter()
 
     init {
-        _presenter.bind(TargetViewDelegate(this))
+        _presenter.bind(TargetViewDelegate())
     }
 
     override fun createPresenter(): TargetPresenter = _presenter

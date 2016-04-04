@@ -1,6 +1,6 @@
 package org.simplepresenter
 
-class TargetViewDelegate(view: PresenterView<TargetPresenter>) : ViewDelegate<TargetPresenter>(view) {
+class TargetViewDelegate() : ViewDelegate<TargetPresenter>() {
 
     override var isResumed: Boolean
         get() = true

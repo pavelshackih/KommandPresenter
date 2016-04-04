@@ -1,6 +1,6 @@
 package org.simplepresenter
 
-abstract class ViewDelegate<P : Presenter>(view: PresenterView<P>) {
+abstract class ViewDelegate<P : Presenter>() {
 
     open var view: PresenterView<P>? = null
     open var presenter: P? = null

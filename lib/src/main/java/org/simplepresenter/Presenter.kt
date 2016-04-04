@@ -9,8 +9,7 @@ abstract class Presenter {
 
     private final val lock = Object()
     private var delegateReference: WeakReference<ViewDelegate<*>>? = null
-    private val delegate: ViewDelegate<*>?
-        get() = delegateReference?.get()
+    private val delegate: ViewDelegate<*>? = delegateReference?.get()
 
     internal var commands = LinkedList<ViewCommand>()
     internal var lastCommand: ViewCommand? = null

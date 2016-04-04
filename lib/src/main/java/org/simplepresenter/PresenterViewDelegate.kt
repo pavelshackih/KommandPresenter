@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 
 @Suppress("UNCHECKED_CAST")
-class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) : ViewDelegate<P>(view) {
+class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) : ViewDelegate<P>() {
 
     private var saveStateCalled = false
     private val uiHandler = Handler()
@@ -19,7 +19,7 @@ class PresenterViewDelegate<P : Presenter>(view: PresenterView<P>) : ViewDelegat
 
     fun onCreate(state: Bundle?) {
         if (state == null) {
-            presenter = view?.createPresenter();
+            presenter = view?.createPresenter()
             if (presenter != null) {
                 PresenterHolder.registerPresenter(presenter!!)
             }
