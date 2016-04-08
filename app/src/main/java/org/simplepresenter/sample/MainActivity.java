@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().
-                    add(id.root, new SampleFragment()).
+                    add(id.root, new ListFragment()).
                     commit();
         }
     }
