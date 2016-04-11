@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import org.simplepresenter.ObservablePresenter.Action;
 import org.simplepresenter.ObservablePresenter.CommandPredicate;
+import org.simplepresenter.commands.DispatchedViewCommand;
 import org.simplepresenter.commands.DistinctViewCommand;
 import org.simplepresenter.commands.OneTimeViewCommand;
 import org.simplepresenter.commands.SingleTopViewCommand;
@@ -33,6 +34,10 @@ public abstract class AbstractObserver {
 
     boolean isOneTime(@NonNull ViewCommand command) {
         return OneTimeViewCommand.class.isAssignableFrom(command.getClass());
+    }
+
+    boolean isDispatched(@NonNull ViewCommand command) {
+        return DispatchedViewCommand.class.isAssignableFrom(command.getClass());
     }
 
     void filter(final CommandPredicate predicate) {

@@ -1,6 +1,7 @@
 package org.simplepresenter;
 
 import org.simplepresenter.ObservablePresenter.CommandPredicate;
+import org.simplepresenter.commands.DispatchedViewCommand;
 
 public class CommandObserver extends AbstractObserver {
 
@@ -33,6 +34,9 @@ public class CommandObserver extends AbstractObserver {
                     return c != command;
                 }
             });
+        }
+        if (c instanceof DispatchedViewCommand) {
+            ((DispatchedViewCommand) c).setDispatched(true);
         }
     }
 }
