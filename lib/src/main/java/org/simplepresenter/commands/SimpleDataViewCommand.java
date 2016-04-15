@@ -1,8 +1,6 @@
 package org.simplepresenter.commands;
 
-import org.simplepresenter.ViewCommand;
-
-public class SimpleDataViewCommand implements ViewCommand {
+public class SimpleDataViewCommand implements DataCommand<String> {
 
     private final String data;
 
@@ -22,7 +20,6 @@ public class SimpleDataViewCommand implements ViewCommand {
         SimpleDataViewCommand that = (SimpleDataViewCommand) o;
 
         return data != null ? data.equals(that.data) : that.data == null;
-
     }
 
     @Override

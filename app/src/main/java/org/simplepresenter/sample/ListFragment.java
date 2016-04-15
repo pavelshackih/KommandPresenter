@@ -48,13 +48,14 @@ public class ListFragment extends PresenterFragment<ListPresenter> {
         return view;
     }
 
+    @NonNull
     @Override
     public ListPresenter createPresenter() {
         return new ListPresenter();
     }
 
     @Override
-    public void dispatchCommand(ViewCommand command) {
+    public void dispatchCommand(@NonNull ViewCommand command) {
         if (command instanceof ProgressViewCommand) {
             dispatchProgress();
         } else if (command instanceof ListPresenter.ErrorCommand) {

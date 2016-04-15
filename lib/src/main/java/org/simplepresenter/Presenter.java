@@ -48,7 +48,7 @@ public class Presenter implements ObservablePresenter {
         delegateReference = new WeakReference<ViewDelegate<?>>(viewDelegate);
     }
 
-    public void onRestoreView() {
+    void onRestoreView() {
         for (int i = 0; i < commands.size(); i++) {
             dispatchCommand(commands.get(i));
         }
@@ -73,7 +73,7 @@ public class Presenter implements ObservablePresenter {
     }
 
     @Override
-    public final void applyCommands(Action f) {
+    final void applyCommands(Action f) {
         commands = f.invoke(commands);
     }
 }
