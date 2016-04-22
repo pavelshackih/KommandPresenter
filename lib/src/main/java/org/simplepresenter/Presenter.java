@@ -73,7 +73,7 @@ public class Presenter implements ObservablePresenter {
     }
 
     @Override
-    final void applyCommands(Action f) {
+    public final void applyCommands(Action f) {
         commands = f.invoke(commands);
     }
 }

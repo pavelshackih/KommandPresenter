@@ -6,7 +6,7 @@ import org.simplepresenter.commands.DataCommand;
 import org.simplepresenter.commands.ErrorViewCommand;
 import org.simplepresenter.commands.ProgressViewCommand;
 
-public abstract class ThreeStateFragment<D, P extends Presenter> extends PresenterFragment<P> {
+public abstract class LcePresenterFragment<D, P extends Presenter> extends PresenterFragment<P> {
 
     @Override
     public void dispatchCommand(@NonNull ViewCommand viewCommand) {
