@@ -17,6 +17,8 @@ public abstract class LcePresenterFragment<D, P extends Presenter> extends Prese
         } else if (viewCommand instanceof DataCommand<?>) {
             //noinspection unchecked
             onData((D) ((DataCommand) viewCommand).getData());
+        } else {
+            onElse(viewCommand);
         }
     }
 
@@ -27,5 +29,9 @@ public abstract class LcePresenterFragment<D, P extends Presenter> extends Prese
     }
 
     public void onData(D data) {
+    }
+
+    public void onElse(ViewCommand viewCommand) {
+
     }
 }
