@@ -34,7 +34,7 @@ public class ListPresenter extends Presenter {
             return;
         }
         isRefreshing = true;
-        applyViewState(ProgressViewCommand.INSTANCE);
+        applyCommand(ProgressViewCommand.Companion.getINSTANCE());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -52,12 +52,12 @@ public class ListPresenter extends Presenter {
                         pojo.body = jsonObject.getString("body");
                         result.add(pojo);
                     } catch (IOException | JSONException ignored) {
-                        applyViewState(new ErrorCommand("Error while loading posts!"));
+                        applyCommand(new ErrorCommand("Error while loading posts!"));
                         isRefreshing = false;
                         return;
                     }
                 }
-                applyViewState(new PostsCommand(result));
+                applyCommand(new PostsCommand(result));
                 isRefreshing = false;
             }
         }).start();

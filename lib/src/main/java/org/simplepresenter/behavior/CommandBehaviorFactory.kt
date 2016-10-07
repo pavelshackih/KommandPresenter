@@ -1,0 +1,3 @@
+package org.simplepresenter.behavior
+
+interface CommandBehaviorFactory

@@ -55,7 +55,7 @@ public class ListFragment extends PresenterFragment<ListPresenter> {
     }
 
     @Override
-    public void dispatchCommand(@NonNull ViewCommand command) {
+    public void dispatch(@NonNull ViewCommand command) {
         if (command instanceof ProgressViewCommand) {
             dispatchProgress();
         } else if (command instanceof ListPresenter.ErrorCommand) {
@@ -153,7 +153,7 @@ public class ListFragment extends PresenterFragment<ListPresenter> {
         TextView textView3;
         TextView textView4;
 
-        public ListViewHolder(View itemView) {
+        ListViewHolder(View itemView) {
             super(itemView);
             textView1 = (TextView) itemView.findViewById(R.id.text1);
             textView2 = (TextView) itemView.findViewById(R.id.text2);
