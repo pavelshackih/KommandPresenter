@@ -2,9 +2,11 @@ package org.simplepresenter.behavior
 
 import org.simplepresenter.ViewCommand
 
-interface CommandBehavior<in T : ViewCommand> {
+interface CommandBehavior{
 
-    fun beforeApply(command: T)
+    fun isSupported(command: ViewCommand): Boolean
 
-    fun afterDispatched(command: T)
+    fun beforeApply(command: ViewCommand)
+
+    fun afterDispatched(command: ViewCommand)
 }

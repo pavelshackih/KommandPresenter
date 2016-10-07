@@ -1,10 +1,13 @@
 package org.simplepresenter.behavior
 
+import org.simplepresenter.ViewCommand
 import org.simplepresenter.commands.DispatchedViewCommand
 
-class DispatchedCommandBehavior : AbstractCommandBehavior<DispatchedViewCommand>() {
+class DispatchedCommandBehavior : TypedCommandBehavior(DispatchedViewCommand::class.java) {
 
-    override fun afterDispatched(command: DispatchedViewCommand) {
-        command.isDispatched = true
+    override fun afterDispatched(command: ViewCommand) {
+        if (command is DispatchedViewCommand) {
+            command.isDispatched = true
+        }
     }
 }

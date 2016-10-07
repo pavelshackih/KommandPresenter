@@ -13,12 +13,12 @@ class PresenterViewDelegate(override var view: PresenterView<*>?) : ViewDelegate
     }
 
     private var id: Int = 0
-    private val engine: CommandEngine
+    private val store: PresentersStore
     private val uiHandler = Handler(Looper.getMainLooper())
     private var saveStateCalled: Boolean = false
 
     init {
-        engine = CommandEngine.Bridge.getCurrentEngine()
+        store = CommandEngine.Bridge.currentEngine.presentersStore
     }
 
     fun onCreate(state: Bundle?) {
@@ -26,12 +26,12 @@ class PresenterViewDelegate(override var view: PresenterView<*>?) : ViewDelegate
             id = ID_GENERATOR.incrementAndGet()
             presenter = view?.createPresenter()
             presenter?.bind(this)
-            engine.savePresenter(id, presenter as Presenter)
+            store.savePresenter(id, presenter as Presenter)
             isResumed = true
             presenter?.onViewCreated()
         } else {
             id = state.getInt(PRESENTER_ID)
-            presenter = engine.loadPresenter(id)
+            presenter = store.loadPresenter(id)
             isRestoring = true
             presenter?.bind(this)
         }
@@ -59,7 +59,7 @@ class PresenterViewDelegate(override var view: PresenterView<*>?) : ViewDelegate
     fun onDestroy() {
         if (!saveStateCalled) {
             presenter?.onViewDestroyed()
-            engine.deletePresenter(id)
+            store.deletePresenter(id)
         }
         dispose()
     }

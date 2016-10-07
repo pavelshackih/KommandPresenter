@@ -17,12 +17,13 @@ interface CommandEngine {
             this.engine = engine
         }
 
-        internal fun getCurrentEngine(): CommandEngine {
-            if (this.engine == null) {
-                throw IllegalStateException("Please register current command engine using org.simplepresenter.CommandEngine.Bridge.register(engine) call.")
+        internal val currentEngine: CommandEngine
+            get() {
+                if (this.engine == null) {
+                    throw IllegalStateException("Please register current command engine using org.simplepresenter.CommandEngine.Bridge.register(engine) call.")
+                }
+                val tmp = engine as CommandEngine
+                return tmp
             }
-            val tmp = engine as CommandEngine
-            return tmp
-        }
     }
 }
