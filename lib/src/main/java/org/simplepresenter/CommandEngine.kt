@@ -8,6 +8,8 @@ interface CommandEngine {
 
     val behaviorFactory: CommandBehaviorFactory
 
+    val viewDispatcher: ViewDispatcher
+
     object Bridge {
 
         private var engine: CommandEngine? = DefaultCommandEngine()

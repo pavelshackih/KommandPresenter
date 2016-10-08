@@ -2,7 +2,7 @@ package org.simplepresenter.behavior
 
 import org.simplepresenter.ViewCommand
 
-interface CommandBehavior{
+interface CommandBehavior {
 
     fun isSupported(command: ViewCommand): Boolean
 

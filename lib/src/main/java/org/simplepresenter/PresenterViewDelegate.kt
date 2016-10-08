@@ -13,12 +13,15 @@ class PresenterViewDelegate(override var view: PresenterView<*>?) : ViewDelegate
     }
 
     private var id: Int = 0
-    private val store: PresentersStore
     private val uiHandler = Handler(Looper.getMainLooper())
     private var saveStateCalled: Boolean = false
 
+    private val store: PresentersStore
+    private val viewDispatcher: ViewDispatcher
+
     init {
         store = CommandEngine.Bridge.currentEngine.presentersStore
+        viewDispatcher = CommandEngine.Bridge.currentEngine.viewDispatcher
     }
 
     fun onCreate(state: Bundle?) {
@@ -72,6 +75,6 @@ class PresenterViewDelegate(override var view: PresenterView<*>?) : ViewDelegate
     }
 
     override fun delegateCommand(command: ViewCommand) {
-        uiHandler.post { view?.dispatch(command) }
+        uiHandler.post { viewDispatcher.dispatchCommand(view as Any, command) }
     }
 }

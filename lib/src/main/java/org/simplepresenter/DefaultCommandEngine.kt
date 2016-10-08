@@ -8,4 +8,6 @@ class DefaultCommandEngine : CommandEngine {
     override val behaviorFactory: CommandBehaviorFactory = DefaultBehaviorFactory()
 
     override val presentersStore: PresentersStore = DefaultPresentersStore()
+
+    override val viewDispatcher: ViewDispatcher = ReflectionViewDispatcher
 }
