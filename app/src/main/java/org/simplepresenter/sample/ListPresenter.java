@@ -34,7 +34,7 @@ public class ListPresenter extends Presenter {
             return;
         }
         isRefreshing = true;
-        applyCommand(ProgressViewCommand.Companion.getINSTANCE());
+        applyCommand(ProgressViewCommand.INSTANCE);
         new Thread(new Runnable() {
             @Override
             public void run() {

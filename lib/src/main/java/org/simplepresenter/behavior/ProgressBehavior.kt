@@ -1,13 +1,10 @@
 package org.simplepresenter.behavior
 
 import org.simplepresenter.ViewCommand
-import org.simplepresenter.commands.ProgressViewCommand
 
-class ProgressBehavior : TypedCommandBehavior(ProgressViewCommand::class.java) {
+class ProgressBehavior : AbstractCommandBehavior() {
 
-    override fun beforeApply(command: ViewCommand) {
-    }
-
-    override fun afterDispatched(command: ViewCommand) {
+    override fun afterDispatched(current: ViewCommand, list: List<ViewCommand>): List<ViewCommand> {
+        return list
     }
 }

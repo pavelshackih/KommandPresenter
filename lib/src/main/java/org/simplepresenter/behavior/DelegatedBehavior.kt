@@ -11,21 +11,19 @@ class DelegatedBehavior(list: List<CommandBehavior>) : CommandBehavior {
         delegates = ArrayList(list)
     }
 
-    override fun isSupported(command: ViewCommand): Boolean = true
-
-    override fun beforeApply(command: ViewCommand) {
+    override fun beforeApply(current: ViewCommand, list: List<ViewCommand>): List<ViewCommand> {
+        var result: List<ViewCommand> = ArrayList(list)
         delegates.forEach {
-            if (it.isSupported(command)) {
-                it.beforeApply(command)
-            }
+            result = it.beforeApply(current, result)
         }
+        return result
     }
 
-    override fun afterDispatched(command: ViewCommand) {
+    override fun afterDispatched(current: ViewCommand, list: List<ViewCommand>): List<ViewCommand> {
+        var result: List<ViewCommand> = ArrayList(list)
         delegates.forEach {
-            if (it.isSupported(command)) {
-                it.afterDispatched(command)
-            }
+            result = it.afterDispatched(current, result)
         }
+        return result
     }
 }

@@ -9,7 +9,7 @@ open class Presenter {
     private val behavior: DelegatedBehavior
     private var viewRef: WeakReference<ViewDelegate>? = null
 
-    var commands: MutableList<ViewCommand> = LinkedList()
+    var commands: List<ViewCommand> = LinkedList()
 
     init {
         behavior = DelegatedBehavior(CommandEngine.Bridge.currentEngine.behaviorFactory.behaviors)
@@ -24,8 +24,7 @@ open class Presenter {
     }
 
     fun applyCommand(command: ViewCommand) {
-        behavior.beforeApply(command)
-        commands.add(command)
+        commands = behavior.beforeApply(command, commands) + command
         if (isViewResumed) {
             dispatchCommand(command)
         }
@@ -45,7 +44,7 @@ open class Presenter {
 
     fun dispatchCommand(command: ViewCommand) {
         viewRef?.get()?.delegateCommand(command)
-        behavior.afterDispatched(command)
+        commands = behavior.afterDispatched(command, commands)
     }
 
     fun clearReferenceToView() {

@@ -10,4 +10,6 @@ class DefaultCommandEngine : CommandEngine {
     override val presentersStore: PresentersStore = DefaultPresentersStore()
 
     override val viewDispatcher: ViewDispatcher = ReflectionViewDispatcher
+
+    override val isDebug: Boolean = true
 }

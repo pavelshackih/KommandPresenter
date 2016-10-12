@@ -4,9 +4,7 @@ import org.simplepresenter.ViewCommand
 
 interface CommandBehavior {
 
-    fun isSupported(command: ViewCommand): Boolean
+    fun beforeApply(current: ViewCommand, list: List<ViewCommand>): List<ViewCommand>
 
-    fun beforeApply(command: ViewCommand)
-
-    fun afterDispatched(command: ViewCommand)
+    fun afterDispatched(current: ViewCommand, list: List<ViewCommand>): List<ViewCommand>
 }

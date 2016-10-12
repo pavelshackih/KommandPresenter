@@ -10,6 +10,8 @@ interface CommandEngine {
 
     val viewDispatcher: ViewDispatcher
 
+    val isDebug: Boolean
+
     object Bridge {
 
         private var engine: CommandEngine? = DefaultCommandEngine()
