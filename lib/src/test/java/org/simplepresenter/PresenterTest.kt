@@ -10,11 +10,11 @@ import java.util.*
 
 class PresenterTest {
 
-    private lateinit var presenter: TargetPresenter
+    private lateinit var presenter: TestPresenter
 
     @Before
     fun setUp() {
-        presenter = TargetPresenter()
+        presenter = TestPresenter()
     }
 
     @Test

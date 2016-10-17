@@ -1,15 +1,11 @@
 package org.simplepresenter.behavior
 
-import java.util.*
-
 open class DefaultBehaviorFactory : CommandBehaviorFactory {
 
-    private val list = ArrayList<CommandBehavior>()
+    private val list by lazy { createList() }
 
-    init {
-        list.add(DispatchedCommandBehavior())
-        list.add(ProgressBehavior())
-    }
+    protected open fun createList(): List<CommandBehavior> =
+            listOf(DispatchedCommandBehavior(), ProgressBehavior())
 
     override val behaviors: List<CommandBehavior> = list
 }

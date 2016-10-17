@@ -1,3 +1,6 @@
 package org.simplepresenter.commands
 
-class StringDataViewCommand(data: String) : AbstractDataCommand<String>(data)
+import org.simplepresenter.ViewCommand
+
+data class StringDataViewCommand(val data: String, override var isDispatched: Boolean = false) :
+        ViewCommand, DistinctViewCommand, DispatchedViewCommand

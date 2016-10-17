@@ -9,7 +9,7 @@ open class Presenter {
     private val behavior: DelegatedBehavior
     private var viewRef: WeakReference<ViewDelegate>? = null
 
-    var commands: List<ViewCommand> = LinkedList()
+    var commands: List<ViewCommand> = ArrayList()
 
     init {
         behavior = DelegatedBehavior(CommandEngine.Bridge.currentEngine.behaviorFactory.behaviors)
