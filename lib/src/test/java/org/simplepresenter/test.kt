@@ -1,17 +1,17 @@
 package org.simplepresenter
 
-// internal implementations for test
+//  implementations for test
 
-internal class TestPresenter : Presenter()
+class TestPresenter : Presenter()
 
-internal fun TestPresenter.applyCommands(vararg commands: ViewCommand) {
+fun TestPresenter.applyCommands(vararg commands: ViewCommand) {
     commands.forEach { this.applyCommand(it) }
 }
 
-internal class TargetView : PresenterView<TestPresenter> {
+class TargetView : PresenterView<TestPresenter> {
 
     override val presenter = TestPresenter()
-    private val viewDelegate = TargetViewDelegate()
+    private val viewDelegate = TestViewDelegate()
 
     init {
         presenter.bind(viewDelegate)
@@ -29,7 +29,7 @@ internal class TargetView : PresenterView<TestPresenter> {
     }
 }
 
-internal class TargetViewDelegate : ViewDelegate() {
+class TestViewDelegate : ViewDelegate() {
 
     override fun delegateCommand(command: ViewCommand) {
     }

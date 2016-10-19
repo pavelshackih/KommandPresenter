@@ -7,7 +7,7 @@ import com.squareup.okhttp.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.simplepresenter.Presenter;
-import org.simplepresenter.commands.DistinctViewCommand;
+import org.simplepresenter.commands.SingleInstanceViewCommand;
 import org.simplepresenter.commands.OneTimeViewCommand;
 import org.simplepresenter.commands.ProgressViewCommand;
 
@@ -70,7 +70,7 @@ public class ListPresenter extends Presenter {
         String body;
     }
 
-    public static class PostsCommand implements DistinctViewCommand {
+    public static class PostsCommand implements SingleInstanceViewCommand {
 
         final List<Pojo> data;
 

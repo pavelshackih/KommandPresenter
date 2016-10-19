@@ -1,21 +1,12 @@
 package org.simplepresenter.behavior
 
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
-import org.simplepresenter.TestPresenter
 import org.simplepresenter.applyCommands
 import org.simplepresenter.commands.ProgressViewCommand
 import org.simplepresenter.commands.StringDataViewCommand
 
-class ProgressBehaviorTest {
-
-    private lateinit var presenter: TestPresenter
-
-    @Before
-    fun setUp() {
-        presenter = TestPresenter()
-    }
+class ProgressBehaviorTest : AbstractBehaviorTest() {
 
     @Test
     fun stackShouldBeWithProgressCommandOnTopTest() {
