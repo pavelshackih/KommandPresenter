@@ -31,6 +31,12 @@ class TargetView : PresenterView<TestPresenter> {
 
 class TestViewDelegate : ViewDelegate() {
 
+    override var isResumed: Boolean = true
+        get() = field
+        set(value) {
+            field = value
+        }
+
     override fun delegateCommand(command: ViewCommand) {
     }
 }
