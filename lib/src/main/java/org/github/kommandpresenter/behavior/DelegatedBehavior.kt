@@ -1,7 +1,6 @@
 package org.github.kommandpresenter.behavior
 
 import org.github.kommandpresenter.ViewCommand
-import org.github.kommandpresenter.behavior.CommandBehavior
 import java.util.*
 
 class DelegatedBehavior(list: List<CommandBehavior>) : CommandBehavior {

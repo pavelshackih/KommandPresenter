@@ -1,6 +1,5 @@
 package org.github.kommandpresenter
 
-import org.github.kommandpresenter.CommandEngine
 import org.github.kommandpresenter.behavior.CommandBehaviorFactory
 import org.github.kommandpresenter.behavior.DefaultBehaviorFactory
 

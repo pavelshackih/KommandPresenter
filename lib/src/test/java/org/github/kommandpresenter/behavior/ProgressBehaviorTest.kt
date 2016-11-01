@@ -1,11 +1,10 @@
 package org.github.kommandpresenter.behavior
 
 import org.github.kommandpresenter.applyCommands
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import org.github.kommandpresenter.behavior.AbstractBehaviorTest
 import org.github.kommandpresenter.commands.ProgressViewCommand
 import org.github.kommandpresenter.commands.StringDataViewCommand
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class ProgressBehaviorTest : AbstractBehaviorTest() {
 

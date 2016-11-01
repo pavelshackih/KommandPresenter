@@ -1,8 +1,5 @@
 package org.github.kommandpresenter.behavior
 
-import org.github.kommandpresenter.behavior.CommandBehavior
-import org.github.kommandpresenter.behavior.CommandBehaviorFactory
-
 open class DefaultBehaviorFactory : CommandBehaviorFactory {
 
     private val list by lazy { createList() }

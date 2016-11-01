@@ -1,6 +1,5 @@
 package org.github.kommandpresenter
 
-import org.github.kommandpresenter.CommandEngine
 import org.github.kommandpresenter.behavior.DelegatedBehavior
 import java.lang.ref.WeakReference
 import java.util.*

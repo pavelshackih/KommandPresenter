@@ -1,8 +1,7 @@
 package org.github.kommandpresenter
 
-import org.junit.Test
-import org.github.kommandpresenter.ReflectionViewDispatcher
 import org.github.kommandpresenter.commands.ProgressViewCommand
+import org.junit.Test
 import org.mockito.Mockito.*
 
 class ReflectionViewDispatcherTest {

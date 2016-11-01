@@ -2,7 +2,6 @@ package org.github.kommandpresenter
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import org.github.kommandpresenter.Presenter
 
 abstract class PresenterFragment<out P : Presenter> : Fragment(), PresenterView<P> {
 

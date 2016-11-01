@@ -24,7 +24,7 @@ interface CommandEngine {
         internal val currentEngine: CommandEngine
             get() {
                 if (this.engine == null) {
-                    throw IllegalStateException("Please register current command engine using org.simplepresenter.CommandEngine.Bridge.register(engine) call.")
+                    throw IllegalStateException("Please register current command engine using org.github.kommandpresenter.CommandEngine.Bridge.register(engine) call.")
                 }
                 val tmp = engine as CommandEngine
                 return tmp

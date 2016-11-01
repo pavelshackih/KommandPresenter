@@ -1,9 +1,5 @@
 package org.github.kommandpresenter
 
-import org.github.kommandpresenter.Presenter
-import org.github.kommandpresenter.PresenterView
-import org.github.kommandpresenter.ViewCommand
-
 abstract class ViewDelegate {
 
     open var view: PresenterView<*>? = null
